@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Directions service</title>
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <script src="scripts/jquery-3.1.1.min.js"></script>
+  <script src="scripts/main.js"></script>
+
+</head>
+
+<body>
+  <div id="floating-panel">
+    <b>Start: </b>
+    <select id="start">
+    </select>
+    <b>End: </b>
+    <select id="end">
+    </select>
+      <b>Mode of Travel: </b>
+    <select id="mode">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+  </div>
+  <div id="right-panel"></div>
+  <div id="map"></div>
+  &nbsp;
+  <div id="warnings-panel"></div>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC2EoZ-pkcds2maCOKNS0mA0gF0FdzxRsc",
+    authDomain: "cityparser.firebaseapp.com",
+    databaseURL: "https://cityparser.firebaseio.com",
+    storageBucket: "cityparser.appspot.com",
+    messagingSenderId: "850927140107"
+  };
+  firebase.initializeApp(config);
+</script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVQIzu1Kcx_NNQYuJEXwCn8w3aDWYfKWo&callback=initMap" async defer></script>
+</body>
+
+</html>

@@ -33,13 +33,13 @@ jQuery(document).ready(function ($) {
         return datosSalida;
     }
 
-    function cargarPosiciones(datosEntrada) {
+    function cargarPosiciones(data) {
                   console.log("Entra en cargarPosiciones");
-        for (var i = 0; i < datosEntrada.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             var datosSalida = {};
-            datos = parsearDatos(datosEntrada[i]);
+            datos = parsearDatos(data[i]);
             datosToHTML(datosSalida);
-            console.log(datosEntrada[i]);
+            console.log(data[i]);
         }
       console.log("Sale de cargarPosiciones tras "+i+" iteraciones");
 

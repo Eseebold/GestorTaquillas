@@ -1,0 +1,23 @@
+  {"0" : {
+    "Ubicacion" : {
+      "Casillero" : "1",
+      "Edificio" : "B",
+      "Piso" : "0"
+    }
+  },
+  "1" : {
+
+    "Ubicacion" : {
+      "Casillero" : "2",
+      "Edificio" : "B",
+      "Piso" : "0"
+    }
+  },
+  "2" : {
+
+    "Ubicacion" : {
+      "Casillero" : "3",
+      "Edificio" : "B",
+      "Piso" : "0"
+    }
+  }}

@@ -1,68 +1,35 @@
- html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      #warnings-panel {
-        width: 100%;
-        height:10%;
-        text-align: center;
-      }
-#floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
-}
+ html,
+ body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+ }
 
-
- #right-panel {
+ #floating-panel {
+   position: absolute;
+   top: 10px;
+   left: 25%;
+   z-index: 5;
+   background-color: #fff;
+   padding: 15px;
+   border: 4px solid #999;
+   text-align: center;
    font-family: 'Roboto', 'sans-serif';
    line-height: 30px;
-   padding-left: 10px;
+   padding-left: 20px;
+   padding-right: 30px;
  }
 
- #right-panel select,
- #right-panel input {
-   font-size: 15px;
- }
 
- #right-panel select {
-   width: 100%;
+ div.par {
+   background-color: lightblue;
  }
-
- #right-panel i {
-   font-size: 12px;
+ div.par:hover {
+   background-color: skyblue;
  }
-
- #right-panel {
-   height: 100%;
-   float: right;
-   width: 390px;
-   overflow: auto;
+ div.impar {
+   background-color: lightgrey;
  }
-
- #map {
-   margin-right: 400px;
- }
-
- @media print {
-   #map {
-     height: 500px;
-     margin: 0;
-   }
-   #right-panel {
-     float: none;
-     width: auto;
-   }
+ div.impar:hover {
+   background-color: darkgray;
  }

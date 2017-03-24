@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <title>Directions service</title>
   <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="styles/flex.css">
+
   <script src="scripts/jquery-3.1.1.min.js"></script>
   <script src="scripts/main.js"></script>
 
@@ -14,21 +16,24 @@
 <body>
   <div id="floating-panel">
     <b>Edificio: </b>
-    <select id="Edificio">
+    <select id="selectEdificios" name="selectEdificios">
+      <option selected="selected">Elige un edificio</option>
+    </select>
   </div>
-
-<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBku3ZW0i8mYW7qvKxvbxwcMPHp2NEUBck",
-    authDomain: "gestortaquillas.firebaseapp.com",
-    databaseURL: "https://gestortaquillas.firebaseio.com",
-    storageBucket: "gestortaquillas.appspot.com",
-    messagingSenderId: "967258540513"
-  };
-  firebase.initializeApp(config);
-</script>
+  <div id="divEdificios" class="container" name=divEdificios>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBku3ZW0i8mYW7qvKxvbxwcMPHp2NEUBck",
+      authDomain: "gestortaquillas.firebaseapp.com",
+      databaseURL: "https://gestortaquillas.firebaseio.com",
+      storageBucket: "gestortaquillas.appspot.com",
+      messagingSenderId: "967258540513"
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
 
 </html>

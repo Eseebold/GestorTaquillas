@@ -2,68 +2,109 @@ const URL = "https://gestortaquillas.firebaseio.com/.json";
 var database = "https://gestortaquillas.firebaseio.com/.json";
 
 jQuery(document).ready(function ($) {
-    var $div = $('#floating-panel');
+  var $div = $('#floating-panel');
 
-    function ajax(opciones) {
-        return new Promise(function (resolve, reject) {
-            $.ajax(opciones).done(resolve).fail(reject);
-        });
+  function ajax(opciones) {
+    return new Promise(function (resolve, reject) {
+      $.ajax(opciones).done(resolve).fail(reject);
+    });
+  }
+
+  function recogerErrorAjax(jqXHR, textStatus, errorThrown) {
+    alert("Error:" + jqXHR.toString() + textStatus + errorThrown);
+  }
+
+  function parsearDatos(datosEntrada) {
+    var datosSalida = {};
+    if (typeof datosEntrada.Asignada != 'undefined') {
+      datosSalida.Asignada = datosEntrada.Asignada;
     }
+    datosSalida.Ubicacion = {}
 
-    function recogerErrorAjax(jqXHR, textStatus, errorThrown) {
-        alert("Error:" + jqXHR.toString() + textStatus + errorThrown);
+    if (typeof datosEntrada.Ubicacion != 'undefined') {
+      datosSalida.Ubicacion.Edificio = datosEntrada.Ubicacion.Edificio;
+      datosSalida.Ubicacion.Piso = datosEntrada.Ubicacion.Piso;
+      datosSalida.Ubicacion.Casillero = datosEntrada.Ubicacion.Casillero;
+    } else {
+      datosSalida.Ubicacion.Edificio = "";
+      datosSalida.Ubicacion.Piso = "";
+      datosSalida.Ubicacion.Casillero = "";
     }
+    return datosSalida;
+  }
 
-    function parsearDatos(datosEntrada) {
-      console.log("Entra en parsearDatos");
-        var datosSalida = {};
-        datosSalida.Asignada = data.Asignada;
-        datosSalida.Ubicacion = {};
+  function cargarPosiciones(datos) {
+    console.log("Tiene que cargar " + datos.length + " elementos.");
+    var datosParseados = {};
+    var edificios = [];
+    for (var i = 0; i < datos.length; i++) {
 
-        if (typeof datosEntrada.Ubicacion !== 'undefined') {
-            datosSalida.Ubicacion.Edificio = data.Ubicacion.Edificio;
-            datosSalida.Ubicacion.Piso = data.Ubicacion.Piso;
-            datosSalida.Ubicacion.Casillero = data.Ubicacion.Casillero;
-        } else {
-            datosSalida.Ubicacion.Edificio = "";
-            datosSalida.Ubicacion.Piso = "";
-            datosSalida.Ubicacion.Casillero = "";
-        }
-       console.log("Sale de parsearDatos");
-        return datosSalida;
+      datosParseados = parsearDatos(datos[i]);
+      var repetido = edificios.indexOf(datosParseados.Ubicacion.Edificio)
+        // A.indexOf(B) devuelve la posicion de B en el array A, en caso de no estar contenido B dentro de A, indexOf devolvera -1
+      if (repetido == -1)
+        edificios.push(datosParseados.Ubicacion.Edificio);
     }
+    edificios.sort();
+    var HTMLSelectEdificios = HTMLRellenarSelect(edificios);
+    $div.find('select#selectEdificios').append(HTMLSelectEdificios);
+    var HTMLDivsEdificios = HTMLGenerarDivs(edificios);
+    console.log(HTMLDivsEdificios);
+    $('div#divEdificios').append(HTMLDivsEdificios);
 
-    function cargarPosiciones(data) {
-                  console.log("Entra en cargarPosiciones");
-        for (var i = 0; i < data.length; i++) {
-            var datosSalida = {};
-            datos = parsearDatos(data[i]);
-            datosToHTML(datosSalida);
-            console.log(data[i]);
-        }
-      console.log("Sale de cargarPosiciones tras "+i+" iteraciones");
+    console.log("carga " + i + " elementos");
 
+  }
+  /* UTILS */
+  function cargarMensaje(mensaje) {
+    alert(mensaje);
+  }
+
+  function HTMLGenerarDivs(datos) {
+    var divs = "";
+    for (var i = 0; i < datos.length; i++) {
+      divs += "<div id='divEdificio" + datos[i] + "' class='" + calcularColor(i) + " unoD2 edificio'>Edificio: "+ datos[i]+"</div>";
     }
+    return divs;
 
-    function cargarMensaje(mensaje) {
-        alert(mensaje);
+  }
+
+  function HTMLRellenarSelect(datos) {
+    var opciones = "";
+    for (var i = 0; i < datos.length; i++) {
+      opciones += "<option value='" + datos[i] + "'>Edificio: " + datos[i] + "</option>";
     }
+    return opciones;
+  }
 
-    function datosToHTML(datos) {
-
-
-        var html_text = "<option value='" + datos.Ubicacion.Edificio + "</option>";
-
-        $div.find('select#Edificio').append(html_text);
+  function calcularColor(i) {
+    var paridad = "";
+    if (esPar(i)) {
+      paridad = "par";
+    } else {
+      paridad = "impar";
     }
+    return paridad;
+  }
 
-      ajax({url: URL, type: "GET"})
+  function esPar(numero) {
+    respuesta = false;
+    if (numero % 2 == 0) {
+      respuesta = true;
+    }
+    return respuesta;
+  }
+  /* AJAX */
+  ajax({
+    url: URL,
+    type: "GET"
+  })
 
-        .then(cargarPosiciones,recogerErrorAjax)
-        .catch(function errorHandler(error) {
-            console.log(error);
-        });
+  .then(cargarPosiciones, recogerErrorAjax)
+    .catch(function errorHandler(error) {
+      console.log(error);
+    });
 
-    console.log("exit");
+  console.log("exit");
 
 });

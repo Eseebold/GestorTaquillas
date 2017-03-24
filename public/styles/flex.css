@@ -1,0 +1,42 @@
+
+div.container{
+  display: flex;
+   justify-content:space-around;
+}
+
+div.edificio{
+  display: flex;
+  position: relative;
+  top: 120px;
+  padding: 2%;
+  margin: 2%;
+
+
+}
+.unoD1 {
+  width: 100%;
+}
+
+.unoD2 {
+  width: 50%;
+}
+
+.unoD3 {
+  width: 33%;
+}
+
+.unoD4 {
+  width: 25%;
+}
+
+.tresD4 {
+  width: 75%;
+}
+
+.unoD8 {
+  width: 12.5%;
+}
+
+.unoD16 {
+  width: 6.25%;
+}
